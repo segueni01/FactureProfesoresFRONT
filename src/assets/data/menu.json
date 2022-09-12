@@ -1,0 +1,18 @@
+[
+    {
+        "nombre": "Dashboard",
+        "redirect": "/dashboard"
+    },
+    {
+        "nombre": "Profesores",
+        "redirect": "/dashboard/profesores"
+    },
+    {
+        "nombre": "Lecciones",
+        "redirect": "/dashboard/lecciones"
+    },
+    {
+        "nombre": "Nomina",
+        "redirect": "/dashboard/nomina"
+    }
+]

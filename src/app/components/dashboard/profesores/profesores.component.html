@@ -1,0 +1,101 @@
+<div class="container">
+  <mat-toolbar>
+    <span>Profesores</span>
+    <div class="example-spacer"></div>
+    <button
+      mat-raised-button
+      color="primary"
+      routerLink="/dashboard/crear-profesor"
+    >
+      AGREGAR PROFESOR
+    </button>
+  </mat-toolbar>
+
+  <mat-form-field appearance="standard">
+    <mat-label>Buscar profesor por identificacion</mat-label>
+    <input
+      matInput
+      (keyup.enter)="buscarProfesor(inputBuscar.value)"
+      placeholder="Escriba la identificacion"
+      #inputBuscar
+      autocomplete="off"
+    />
+  </mat-form-field>
+
+  <div *ngIf="listProfesor.length > 0">
+    <div class="mat-elevation-z8">
+      <table mat-table [dataSource]="dataSource">
+        <!-- id Column -->
+        <ng-container matColumnDef="id">
+          <th mat-header-cell *matHeaderCellDef>Id.</th>
+          <td mat-cell *matCellDef="let element">
+            {{ element.identificacion }}
+          </td>
+        </ng-container>
+
+        <!-- nombre Column -->
+        <ng-container matColumnDef="nombre">
+          <th mat-header-cell *matHeaderCellDef>Nombre</th>
+          <td mat-cell *matCellDef="let element">{{ element.nombre }}</td>
+        </ng-container>
+
+        <!-- tipo de profesor Column -->
+        <ng-container matColumnDef="tipoProfesor">
+          <th mat-header-cell *matHeaderCellDef>Tipo de profesor</th>
+          <td mat-cell *matCellDef="let element">{{ element.tipoProfesor }}</td>
+        </ng-container>
+
+        <!-- moneda de pago Column -->
+        <ng-container matColumnDef="monedaPago">
+          <th mat-header-cell *matHeaderCellDef>Moneda de pago</th>
+          <td mat-cell *matCellDef="let element">{{ element.monedaDePago }}</td>
+        </ng-container>
+
+        <!-- tarifa por hora Column -->
+        <ng-container matColumnDef="tarifaHora">
+          <th mat-header-cell *matHeaderCellDef>Tarifa por hora</th>
+          <td mat-cell *matCellDef="let element">
+            {{ element.tarifaHoraria }}
+        </ng-container>
+
+        <!-- fecha de nacimiento Column -->
+        <ng-container matColumnDef="fechaNacimiento">
+          <th mat-header-cell *matHeaderCellDef>Fecha de nacimiento</th>
+          <td mat-cell *matCellDef="let element">
+            {{ element.fechaNacimientoMap }}
+          </td>
+        </ng-container>
+
+        <!-- acciones Column -->
+        <ng-container matColumnDef="acciones">
+          <th mat-header-cell *matHeaderCellDef></th>
+          <td
+            mat-cell
+            *matCellDef="let element; let i = index"
+            style="text-align: center"
+          >
+            <a
+              style="color: #e15639"
+              matTooltip="Eliminar"
+              (click)="eliminarProfesor(element.identificacion)"
+            >
+              <mat-icon>delete</mat-icon>
+            </a>
+          </td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+      </table>
+
+      <mat-paginator
+        [pageSizeOptions]="[5, 10, 20]"
+        showFirstLastButtons
+        aria-label="Select page of periodic elements"
+      >
+      </mat-paginator>
+    </div>
+  </div>
+
+  <h2 *ngIf="listProfesor.length == 0">No hay profesores para mostrar!</h2>
+</div>

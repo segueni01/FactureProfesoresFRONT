@@ -1,0 +1,91 @@
+<div class="container">
+    <mat-toolbar>
+      <span>Registrar Leccion</span>
+    </mat-toolbar>
+    <mat-card style="margin-top: 10px">
+      
+      <form [formGroup]="form" (ngSubmit)="registrarLeccion()">
+  
+        <p>Los campos con (*) son obligatorios</p>
+  
+        <mat-grid-list cols="4" rowHeight="70px">
+
+            <mat-grid-tile [colspan]="3" [rowspan]="7">
+                <img src="./assets/img/leccion.png" width="250" height="250" />
+              </mat-grid-tile>
+
+            <mat-grid-tile [colspan]="1" [rowspan]="1">
+                <mat-form-field class="ancho">
+                    <mat-label>Identificacion del profesor</mat-label>
+                    <input formControlName="IdProfesor" 
+                            matInput 
+                            type="text" 
+                            [matAutocomplete]="auto" >
+                    <mat-autocomplete #auto="matAutocomplete">
+                    <mat-option *ngFor="let profesor of profesoresFiltrados" [value]="profesor">
+                        {{profesor}}
+                    </mat-option>
+                    </mat-autocomplete>
+                </mat-form-field>
+            </mat-grid-tile>
+  
+          <mat-grid-tile [colspan]="1" [rowspan]="1">
+            <mat-form-field class="ancho">
+              <mat-label>Codigo</mat-label>
+              <input
+                matInput
+                autocomplete="off"
+                formControlName="Codigo"
+              />
+            </mat-form-field>
+          </mat-grid-tile>
+
+          <mat-grid-tile [colspan]="1" [rowspan]="1">
+            <mat-form-field class="ancho">
+              <mat-label>Curso</mat-label>
+              <input matInput autocomplete="off" formControlName="Curso" />
+            </mat-form-field>
+          </mat-grid-tile>
+
+          <mat-grid-tile [colspan]="1" [rowspan]="1">
+            <mat-form-field class="ancho">
+              <mat-label>Horas Dictadas</mat-label>
+              <input
+                matInput
+                type="number" 
+                autocomplete="off"
+                formControlName="HorasDictadas"
+              />
+            </mat-form-field>
+          </mat-grid-tile>
+  
+  
+          <mat-grid-tile [colspan]="1" [rowspan]="1">
+            <mat-form-field class="ancho">
+              <mat-label>Fecha</mat-label>
+              <input
+                matInput
+                [matDatepicker]="picker"
+                formControlName="Fecha"
+                [disabled]="true"
+              />
+              <mat-hint>MM/DD/YYYY</mat-hint>
+              <mat-datepicker-toggle
+                matSuffix
+                [for]="picker"
+              ></mat-datepicker-toggle>
+              <mat-datepicker #picker disabled="false"></mat-datepicker>
+            </mat-form-field>
+          </mat-grid-tile>
+  
+          <mat-grid-tile [colspan]="1" [rowspan]="1">
+            <button mat-raised-button (click)="regresar()" style="margin-right: 20px">Volver</button>
+            <button mat-raised-button type="submit" color="primary">Aceptar</button>
+          </mat-grid-tile>
+  
+        </mat-grid-list>
+  
+      </form>
+    </mat-card>
+  </div>
+  

@@ -1,0 +1,103 @@
+<div class="container">
+  <mat-toolbar>
+    <span>Registrar profesor</span>
+  </mat-toolbar>
+  <mat-card style="margin-top: 10px">
+    
+    <form [formGroup]="form" (ngSubmit)="registrarProfesor()">
+
+      <p>Los campos con (*) son obligatorios</p>
+
+      <mat-grid-list cols="4" rowHeight="70px">
+
+        <mat-grid-tile [colspan]="1" [rowspan]="1">
+          <mat-form-field class="ancho">
+            <mat-label>Identificacion</mat-label>
+            <input
+              matInput
+              autocomplete="off"
+              formControlName="Identificacion"
+            />
+          </mat-form-field>
+        </mat-grid-tile>
+
+        <mat-grid-tile [colspan]="3" [rowspan]="7">
+          <img src="./assets/img/profesor.png" width="250" height="250" />
+        </mat-grid-tile>
+        <mat-grid-tile [colspan]="1" [rowspan]="1">
+          <mat-form-field class="ancho">
+            <mat-label>Nombre</mat-label>
+            <input matInput autocomplete="off" formControlName="Nombre" />
+          </mat-form-field>
+        </mat-grid-tile>
+
+        <mat-grid-tile [colspan]="1" [rowspan]="1">
+          <mat-form-field class="ancho">
+            <mat-label>Tipo de profesor</mat-label>
+            <mat-select formControlName="TipoProfesor">
+              <mat-option
+                *ngFor="let tipo of tiposProfesor"
+                [value]="tipo.value"
+              >
+                {{ tipo.viewValue }}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+        </mat-grid-tile>
+
+        <mat-grid-tile [colspan]="1" [rowspan]="1">
+          <mat-form-field class="ancho">
+            <mat-label>Moneda de pago</mat-label>
+            <input formControlName="MonedaDePago" 
+                   matInput 
+                   type="text" 
+                   [matAutocomplete]="auto" >
+            <mat-autocomplete #auto="matAutocomplete">
+              <mat-option *ngFor="let moneda of MonedasFiltradas" [value]="moneda">
+                {{moneda}}
+              </mat-option>
+            </mat-autocomplete>
+          </mat-form-field>
+        </mat-grid-tile>
+
+        <mat-grid-tile [colspan]="1" [rowspan]="1">
+          <mat-form-field class="ancho">
+            <mat-label>Tarifa horaria en COP</mat-label>
+            <input
+              matInput
+              type="number" 
+              autocomplete="off"
+              formControlName="TarifaHoraria"
+            />
+          </mat-form-field>
+        </mat-grid-tile>
+
+        <mat-grid-tile [colspan]="1" [rowspan]="1">
+          <mat-form-field class="ancho">
+            <mat-label>Fecha de nacimiento</mat-label>
+            <input
+              matInput
+              [matDatepicker]="picker"
+              formControlName="FechaNacimiento"
+              [disabled]="true"
+              [max]="hoy"
+            />
+            <mat-hint>MM/DD/YYYY</mat-hint>
+            <mat-datepicker-toggle
+              matSuffix
+              [for]="picker"
+            ></mat-datepicker-toggle>
+            <mat-datepicker #picker disabled="false"></mat-datepicker>
+          </mat-form-field>
+        </mat-grid-tile>
+
+        <mat-grid-tile [colspan]="1" [rowspan]="1">
+          <button mat-raised-button (click)="regresar()" style="margin-right: 20px">Volver</button>
+          <button mat-raised-button type="submit" color="primary">Aceptar</button>
+        </mat-grid-tile>
+
+      </mat-grid-list>
+
+    </form>
+  </mat-card>
+</div>
