@@ -19,3 +19,5 @@ http://localhost:4200/dashboard
 en el archivo de enviroments.ts estan las url de las api a las que esta apuntando, actualmente el proyecto back se esta ejecutando en esta url `https://localhost:5001/`
 
 en caso de que se cambie la url de la api debemos modificar la url que se encuentra en este archivo.
+
+Para que el front funcione debe estar corriendo la API.
